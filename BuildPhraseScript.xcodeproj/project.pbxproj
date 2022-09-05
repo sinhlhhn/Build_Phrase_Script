@@ -13,6 +13,7 @@
 		2EB1584028C5E80400FBA086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1583E28C5E80400FBA086 /* Main.storyboard */; };
 		2EB1584228C5E80600FBA086 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1584128C5E80600FBA086 /* Assets.xcassets */; };
 		2EB1584528C5E80600FBA086 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1584328C5E80600FBA086 /* LaunchScreen.storyboard */; };
+		2EB1585828C5EFEF00FBA086 /* remoteData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1585128C5E99800FBA086 /* remoteData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		2EB1584128C5E80600FBA086 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EB1584428C5E80600FBA086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EB1584628C5E80600FBA086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EB1584F28C5E8B500FBA086 /* HelloScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloScript.swift; sourceTree = "<group>"; };
+		2EB1585128C5E99800FBA086 /* remoteData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = remoteData.json; sourceTree = "<group>"; };
+		2EB1585428C5EA4100FBA086 /* IncBuildNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncBuildNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,8 @@
 		2EB1582C28C5E80400FBA086 = {
 			isa = PBXGroup;
 			children = (
+				2EB1585128C5E99800FBA086 /* remoteData.json */,
+				2EB1584E28C5E89F00FBA086 /* Scripts */,
 				2EB1583728C5E80400FBA086 /* BuildPhraseScript */,
 				2EB1583628C5E80400FBA086 /* Products */,
 			);
@@ -67,6 +73,15 @@
 			path = BuildPhraseScript;
 			sourceTree = "<group>";
 		};
+		2EB1584E28C5E89F00FBA086 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2EB1584F28C5E8B500FBA086 /* HelloScript.swift */,
+				2EB1585428C5EA4100FBA086 /* IncBuildNumber.swift */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,6 +89,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2EB1584928C5E80600FBA086 /* Build configuration list for PBXNativeTarget "BuildPhraseScript" */;
 			buildPhases = (
+				2E8A1E1628C5F2A3008E112E /* Debug Script */,
+				2E8A1E1728C5F376008E112E /* Auto Increment Script */,
+				2E8A1E1828C5F4A1008E112E /* Download Remote Data Script */,
 				2EB1583128C5E80400FBA086 /* Sources */,
 				2EB1583228C5E80400FBA086 /* Frameworks */,
 				2EB1583328C5E80400FBA086 /* Resources */,
@@ -126,12 +144,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EB1584528C5E80600FBA086 /* LaunchScreen.storyboard in Resources */,
+				2EB1585828C5EFEF00FBA086 /* remoteData.json in Resources */,
 				2EB1584228C5E80600FBA086 /* Assets.xcassets in Resources */,
 				2EB1584028C5E80400FBA086 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E8A1E1628C5F2A3008E112E /* Debug Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Scripts/HelloScript.swift",
+			);
+			name = "Debug Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o CompiledScript\n    echo \"$SCRIPT_INPUT_FILE_0\"\n    echo \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}\"\n./CompiledScript\n";
+		};
+		2E8A1E1728C5F376008E112E /* Auto Increment Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Scripts/IncBuildNumber.swift",
+			);
+			name = "Auto Increment Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o IncrementAppVersionScript\n  ./IncrementAppVersionScript\n";
+		};
+		2E8A1E1828C5F4A1008E112E /* Download Remote Data Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Download Remote Data Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "data = $(curl -o ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/remoteData.json \"https://api.github.com/search/repositories\"\n);\ncp -f ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/remoteData.json ${SRCROOT}/remoteData.json\n\nif [ -n \"$data\" ];\nthen\necho \"warning: latest.json can NOT download now, $data\" > ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/latest.json;\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2EB1583128C5E80400FBA086 /* Sources */ = {
