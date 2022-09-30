@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E99080028C7404100F84A2F /* remoteData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1585128C5E99800FBA086 /* remoteData.json */; };
 		2EB1583928C5E80400FBA086 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB1583828C5E80400FBA086 /* AppDelegate.swift */; };
 		2EB1583B28C5E80400FBA086 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB1583A28C5E80400FBA086 /* SceneDelegate.swift */; };
 		2EB1583D28C5E80400FBA086 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB1583C28C5E80400FBA086 /* ViewController.swift */; };
 		2EB1584028C5E80400FBA086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1583E28C5E80400FBA086 /* Main.storyboard */; };
 		2EB1584228C5E80600FBA086 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1584128C5E80600FBA086 /* Assets.xcassets */; };
 		2EB1584528C5E80600FBA086 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1584328C5E80600FBA086 /* LaunchScreen.storyboard */; };
-		2EB1585828C5EFEF00FBA086 /* remoteData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1585128C5E99800FBA086 /* remoteData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,10 +91,10 @@
 			buildPhases = (
 				2E8A1E1628C5F2A3008E112E /* Debug Script */,
 				2E8A1E1728C5F376008E112E /* Auto Increment Script */,
-				2E8A1E1828C5F4A1008E112E /* Download Remote Data Script */,
 				2EB1583128C5E80400FBA086 /* Sources */,
 				2EB1583228C5E80400FBA086 /* Frameworks */,
 				2EB1583328C5E80400FBA086 /* Resources */,
+				2E8A1E1828C5F4A1008E112E /* Download Remote Data Script */,
 			);
 			buildRules = (
 			);
@@ -143,8 +143,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E99080028C7404100F84A2F /* remoteData.json in Resources */,
 				2EB1584528C5E80600FBA086 /* LaunchScreen.storyboard in Resources */,
-				2EB1585828C5EFEF00FBA086 /* remoteData.json in Resources */,
 				2EB1584228C5E80600FBA086 /* Assets.xcassets in Resources */,
 				2EB1584028C5E80400FBA086 /* Main.storyboard in Resources */,
 			);
@@ -207,7 +207,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "data = $(curl -o ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/remoteData.json \"https://api.github.com/search/repositories\"\n);\ncp -f ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/remoteData.json ${SRCROOT}/remoteData.json\n\nif [ -n \"$data\" ];\nthen\necho \"warning: latest.json can NOT download now, $data\" > ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/latest.json;\nfi\n";
+			shellScript = "data = $(curl -o ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/remoteData.json \"https://api.github.com/search/repositories\"\n);\n\n\nif [ -n \"$data\" ];\nthen\necho \"warning: latest.json can NOT download now, $data\" > ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/latest.json;\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
