@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E6D778D29385DA800C587B1 /* TestScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScript.swift; sourceTree = "<group>"; };
 		2EB1583528C5E80400FBA086 /* BuildPhraseScript.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildPhraseScript.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB1583828C5E80400FBA086 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EB1583A28C5E80400FBA086 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 			children = (
 				2EB1584F28C5E8B500FBA086 /* HelloScript.swift */,
 				2EB1585428C5EA4100FBA086 /* IncBuildNumber.swift */,
+				2E6D778D29385DA800C587B1 /* TestScript.swift */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -89,6 +91,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2EB1584928C5E80600FBA086 /* Build configuration list for PBXNativeTarget "BuildPhraseScript" */;
 			buildPhases = (
+				2E6D778B29384F1F00C587B1 /* Handle Script Error */,
 				2E8A1E1628C5F2A3008E112E /* Debug Script */,
 				2E8A1E1728C5F376008E112E /* Auto Increment Script */,
 				2EB1583128C5E80400FBA086 /* Sources */,
@@ -153,9 +156,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2E8A1E1628C5F2A3008E112E /* Debug Script */ = {
+		2E6D778B29384F1F00C587B1 /* Handle Script Error */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Handle Script Error";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#Wrong file\n#FILE=\"/Users/lehoangsinh/Documents/MyCode/MyCode/Util/ConfigFiles/TestScript123.swift\"\n#Correct file\nFILE=\"/Users/lehoangsinh/Documents/MyCode/MyCode/BuildPhraseScript/Scripts/TestScript.swift\"\nif [ -f \"$FILE\" ]; then\n/bin/cat <<EOM >$FILE\n    /* write something to file */\nEOM\nelse\n    echo \"error: $FILE NOT exists.\"\n    exit 1\nfi\n";
+		};
+		2E8A1E1628C5F2A3008E112E /* Debug Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -168,13 +189,13 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o CompiledScript\n    echo \"$SCRIPT_INPUT_FILE_0\"\n    echo \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}\"\n./CompiledScript\n";
 		};
 		2E8A1E1728C5F376008E112E /* Auto Increment Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -187,7 +208,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o IncrementAppVersionScript\n  ./IncrementAppVersionScript\n";
 		};
